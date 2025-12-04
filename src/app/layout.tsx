@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 z-[999] border-b border-border bg-surface/90 backdrop-blur">
               <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-                <div className="text-lg font-semibold">Bíblia Sagrada</div>
+                <strong className="text-lg text-primary">Bíblia Sagrada</strong>
 
                 {/* hamburger */}
                 <button

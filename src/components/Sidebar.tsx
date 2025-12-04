@@ -43,7 +43,7 @@ export default function Sidebar({ open, setOpen }: Props) {
 
           {/* header do sidebar */}
           <div className="flex items-center justify-between mb-4 md:mb-6">
-            <strong className="text-lg">Menu</strong>
+            <strong className="text-lg text-primary mb-2">Menu</strong>
 
             <button
               className="md:hidden px-2 py-1 border border-border rounded bg-surface text-foreground"
@@ -58,7 +58,7 @@ export default function Sidebar({ open, setOpen }: Props) {
           <ThemeSelector />
 
           {/* Livros */}
-          <h3 className="font-semibold mt-5 mb-2">Livros</h3>
+          <strong className="text-lg text-primary mb-2">Livros</strong>
 
           <div className="overflow-y-auto pr-2 space-y-2">
             {books.map((b: Book, idx: number) => {

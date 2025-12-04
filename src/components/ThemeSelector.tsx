@@ -8,7 +8,7 @@ export default function ThemeSelector() {
 
   return (
     <div className="mb-4">
-      <label className="block text-sm mb-2 text-primary">Tema</label>
+      <strong className="text-lg text-primary mb-2">Tema</strong>
 
       <div className="grid grid-cols-2 gap-2">
         <button

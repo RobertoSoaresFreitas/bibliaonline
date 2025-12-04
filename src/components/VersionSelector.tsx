@@ -15,7 +15,7 @@ export default function VersionSelector() {
 
   return (
     <div className="mb-4">
-      <label className="block text-sm mb-1 text-foreground">Versão</label>
+      <strong className="text-lg text-primary mb-2">Versão</strong>
 
       <select
         value={version}

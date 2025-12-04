@@ -48,7 +48,7 @@ export default function HomePage() {
               onClick={gotoPrevVerse}
               className="px-3 py-1 border border-border rounded bg-surface hover:bg-surface-highlight"
             >
-              ← Anterior
+              ←Anterior
             </button>
 
             <select
@@ -67,7 +67,7 @@ export default function HomePage() {
               onClick={gotoNextVerse}
               className="px-3 py-1 border border-border rounded bg-surface hover:bg-surface-highlight"
             >
-              Próximo →
+              Próximo→
             </button>
           </div>
         </div>
