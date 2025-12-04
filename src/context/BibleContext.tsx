@@ -13,8 +13,8 @@ export interface Book {
 }
 
 export interface BibleContextValue {
-  version: "nvi" | "acf" | "aa";
-  setVersion: (v: "nvi" | "acf" | "aa") => void;
+  version: "aa" | "acf" | "nvi";
+  setVersion: (v: "aa" | "acf" | "nvi") => void;
   books: Book[];
   selectedBook: Book | null;
   selectedChapter: number;
@@ -29,7 +29,7 @@ export interface BibleContextValue {
 const BibleContext = createContext<BibleContextValue | undefined>(undefined);
 
 export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [version, setVersion] = useState<"nvi" | "acf" | "aa">("nvi");
+  const [version, setVersion] = useState<"aa" | "acf" | "nvi">("aa");
   const [books, setBooks] = useState<Book[]>(nvi as Book[]);
 
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -37,14 +37,15 @@ export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [selectedVerse, setSelectedVerse] = useState<number>(1);
 
   // Map version string to data
-  const versionData: Record<"nvi" | "acf" | "aa", Book[]> = {
-  nvi: nvi as Book[],
-  acf: acf as Book[],
+  const versionData: Record<"aa" | "acf" | "nvi", Book[]> = {
   aa: aa as Book[],
+  acf: acf as Book[],
+  nvi: nvi as Book[],
+  
 };
 
   // change version while trying to preserve selection
-  const changeVersion = (newVersion: "nvi" | "acf" | "aa") => {
+  const changeVersion = (newVersion: "aa" | "acf" | "nvi") => {
     const newBooks = versionData[newVersion];
     setVersion(newVersion);
     setBooks(newBooks);

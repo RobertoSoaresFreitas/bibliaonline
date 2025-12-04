@@ -3,7 +3,7 @@
 import React from "react";
 import { useBible } from "@/context/BibleContext";
 
-type Version = "nvi" | "acf" | "aa";
+type Version = "aa" | "acf" | "nvi";
 
 export default function VersionSelector() {
   const { version, setVersion } = useBible();
@@ -28,9 +28,9 @@ export default function VersionSelector() {
           transition
         "
       >
-        <option value="nvi">NVI - Nova Versão Internacional</option>
-        <option value="acf">ACF - Almeida Corrigida Fiel</option>
         <option value="aa">AA - Almeida Atualizada</option>
+        <option value="acf">ACF - Almeida Corrigida Fiel</option>
+        <option value="nvi">NVI - Nova Versão Internacional</option>
       </select>
     </div>
   );
