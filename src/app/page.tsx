@@ -433,7 +433,7 @@ export default function HomePage() {
         <div className="fixed inset-x-0 bottom-0 z-50">
           <div className="bg-surface border-t border-border px-4 py-3 shadow-xl flex items-center justify-between gap-3">
             <div className="flex gap-3 items-center">
-              <button
+              {/* <button
                 onClick={shareViaWhatsApp}
                 className="flex flex-col items-center text-sm px-2 py-1"
                 title="WhatsApp"
@@ -443,7 +443,7 @@ export default function HomePage() {
                   <path d="M19 15c-.3-.2-1.8-1-2-1.1-.2-.1-.4-.1-.6.1l-.6.6c-.1.2-.3.2-.5.1-.5-.2-1.6-1-2.6-2-1-.9-1.3-1.6-1.5-1.8-.1-.2 0-.4.1-.6l.6-.6c.2-.2.2-.4.1-.6C9.8 6.8 9 6 8.9 5.9 8.7 5.7 8.6 5.7 8.4 5.9 7.6 6.6 7 7.6 7 8.6c0 1.2.4 2.4 1.3 3.5 1 1.1 2 1.9 3 2.4.9.5 1.6.6 2 .7.3.1.8.1 1 .1.6 0 1 .3 1.3.6.2.2.2.4.1.6z"/>
                 </svg>
                 <span className="text-xs mt-1">WhatsApp</span>
-              </button>
+              </button> */}
 
               <button
                 onClick={shareToInstagram}
