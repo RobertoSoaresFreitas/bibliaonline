@@ -98,8 +98,8 @@ export default function HomePage() {
       const padding = 80;
       // Fonte base (original app usa ~28px). Aqui multiplicamos por 3 => 84px base.
       const baseFontPx = 60;
-      const refFontPx = Math.round(baseFontPx * 0.35); // smaller for reference/footer
-      const titleFontPx = Math.round(baseFontPx * 0.45);
+      const refFontPx = Math.round(baseFontPx * 0.5); // smaller for reference/footer
+      const titleFontPx = Math.round(baseFontPx * 1.5); // larger for title
 
       // prepare text
       const versionLabel = version === "nvi" ? "NVI" : version === "acf" ? "ACF" : "AA";
@@ -221,13 +221,13 @@ export default function HomePage() {
 
       // Draw logo at footer left (height = 120px)
       const logoImg = new Image();
-      logoImg.src = "/bearbee-256x256.png";
+      logoImg.src = "/bibliaonlogo.png";
       await new Promise<void>((res, rej) => {
         logoImg.onload = () => res();
         logoImg.onerror = () => res(); // continue even if logo fails
       });
 
-      const logoHeight = 120;
+      const logoHeight = 240;
       const logoScale = (logoImg.width && logoImg.height) ? logoHeight / logoImg.height : 1;
       const logoWidth = logoImg.width ? Math.round(logoImg.width * logoScale) : Math.round(logoHeight);
       const footerY = height - 160;
@@ -337,16 +337,16 @@ export default function HomePage() {
   return (
     <main>
       {/* Header */}
-      <div className="sticky top-16 z-40 pb-4 mb-4 border-b border-border bg-surface/90 backdrop-blur">
+      <div className="sticky top-16 z-40 pb-4 mb-4 border-b border-border  backdrop-blur">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-2">
-          <div className="text-lg font-semibold">
+          <div className="text-lg font-semibold text-yellow-500 hover:text-yellow-400">
             {selectedBook.name} {selectedChapter}:{selectedVerse}
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={gotoPrevVerse}
-              className="px-3 py-1 border border-border rounded bg-surface hover:bg-surface-highlight"
+              className="px-3 py-1 border border-border rounded text-yellow-500 hover:text-yellow-400"
             >
               ←Anterior
             </button>
@@ -365,7 +365,7 @@ export default function HomePage() {
 
             <button
               onClick={gotoNextVerse}
-              className="px-3 py-1 border border-border rounded bg-surface hover:bg-surface-highlight"
+              className="px-3 py-1 border border-border rounded text-yellow-500 hover:text-yellow-400"
             >
               Próximo→
             </button>
@@ -401,9 +401,9 @@ export default function HomePage() {
                     e.stopPropagation();
                     startShareMode(num);
                   }}
-                  className="absolute right-1 -bottom-6 opacity-80 hover:opacity-100 transition bg-surface/80 border border-border rounded px-2 py-1 shadow-sm"
+                  className="absolute right-1 -bottom-6 opacity-80 hover:opacity-100 transition bg-yellow-500/40 border border-border rounded px-2 py-1 shadow-sm"
                   title="Compartilhar"
-                >
+                ><span className="text-sm font-medium">Compartilhar</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -415,6 +415,7 @@ export default function HomePage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="inline-block"
+                    
                   >
                     <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
                     <polyline points="16 6 12 2 8 6"/>
@@ -487,7 +488,7 @@ export default function HomePage() {
                 onClick={shareGeneric}
                 className="px-3 py-1 rounded border border-border hover:bg-surface-highlight"
               >
-                Compartilhar (texto)
+                texto
               </button>
 
               <button

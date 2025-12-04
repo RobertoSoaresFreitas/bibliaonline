@@ -88,12 +88,13 @@ export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setSelectedVerse(1);
   }
 
-  // CORRIGIDO → não resetamos selectedVerse
+  // CORREÇÃO APLICADA: resetar versículo ao trocar capítulo
   function selectChapter(book: Book, chapterNumber: number) {
     const maxCh = Math.max(1, book.chapters.length);
     const cap = Math.min(Math.max(1, chapterNumber), maxCh);
     setSelectedBook(book);
     setSelectedChapter(cap);
+    setSelectedVerse(1); // << novo comportamento correto
   }
 
   function gotoNextVerse() {

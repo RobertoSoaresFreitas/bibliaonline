@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 {/* hamburger */}
                 <button
-                  className="md:hidden cursor-pointer px-3 py-1 border border-border rounded z-[1000] bg-surface ml-4 "
+                  className="md:hidden cursor-pointer px-3 py-1 border border-border rounded z-[1000] text-yellow-500 hover:text-yellow-400 ml-4 "
                   onClick={() => setOpen(true)}
                 >
                   ☰
