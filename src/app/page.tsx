@@ -38,9 +38,8 @@ export default function HomePage() {
   if (!selectedBook) {
     return (
       <main className="flex flex-col items-center justify-center h-60 gap-4">
-        <p className="text-2xl text-primary">Escolha:</p>
-        <p className="text-2xl text-primary">a versão, um tema</p>
-        <p className="text-2xl text-primary">um livro e versículo</p>
+        <p className="text-2xl text-primary">Abra o menu e escolha:</p>
+        <p className="text-2xl text-primary">Versão, Tema, Livro e Versículo</p>
         <p className="text-2xl text-primary">Deus o ilumine e boa leitura 🙏</p>
       </main>
     );
@@ -52,8 +51,8 @@ export default function HomePage() {
   return (
     <main>
       {/* header do capítulo */}
-      <div className="sticky top-16 z-40 pt-4 pb-4 mb-4 border-b border-border bg-surface/90 backdrop-blur">
-        <div className="max-w-5xl mx-auto px-2 flex items-center justify-between gap-4">
+      <div className="sticky top-16 z-40 pb-4 mb-4 border-b border-border bg-surface/90 backdrop-blur">
+        <div className="max-w-5xl mx-auto flex items-center justify-between gap-2">
           <div className="text-lg font-semibold">
             {selectedBook.name} {selectedChapter}:{selectedVerse}
           </div>

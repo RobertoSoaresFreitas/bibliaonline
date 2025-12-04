@@ -6,8 +6,6 @@ import "@/styles/globals.css";
 import { BibleProvider } from "@/context/BibleContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Sidebar from "@/components/Sidebar";
-import VersionSelector from "@/components/VersionSelector";
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -30,13 +28,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 z-[999] border-b border-border bg-surface/90 backdrop-blur">
               <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-                <strong className="text-lg text-primary">Bíblia Sagrada
-                
+                <strong className="text-lg text-primary">
+
+                  {/* Botão para celulares / telas pequenas */}
+                  <button
+                    className="block md:hidden cursor-pointer bg-surface ml-4 hover:text-zinc-600 transition"
+                    onClick={() => setOpen(true)}
+                  >
+                    Bíblia Sagrada
+                  </button>
+
+                  {/* Botão para telas médias e maiores */}
+                  <button
+                    className="hidden md:block cursor-pointer bg-surface ml-4 hover:text-zinc-600 transition"
+                  >
+                    Bíblia Sagrada
+                  </button>
                 </strong>
-               
+
                 {/* hamburger */}
                 <button
-                  className="md:hidden px-3 py-1 border border-border rounded z-[1000] bg-surface ml-4"
+                  className="md:hidden cursor-pointer px-3 py-1 border border-border rounded z-[1000] bg-surface ml-4 "
                   onClick={() => setOpen(true)}
                 >
                   ☰
