@@ -431,7 +431,7 @@ export default function HomePage() {
       {/* Bottom sheet modal for sharing */}
       {showSheet && (
         <div className="fixed inset-x-0 bottom-0 z-50">
-          <div className="bg-surface border-t border-border px-4 py-3 shadow-xl flex items-center justify-between gap-3">
+          <div className="bg-surface text-yellow-500 border-t border-border px-4 py-3 shadow-xl flex items-center justify-between gap-3">
             <div className="flex gap-3 items-center">
               {/* <button
                 onClick={shareViaWhatsApp}
