@@ -36,15 +36,12 @@ export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [selectedChapter, setSelectedChapter] = useState<number>(1);
   const [selectedVerse, setSelectedVerse] = useState<number>(1);
 
-  // Map version string to data
   const versionData: Record<"aa" | "acf" | "nvi", Book[]> = {
-  aa: aa as Book[],
-  acf: acf as Book[],
-  nvi: nvi as Book[],
-  
-};
+    aa: aa as Book[],
+    acf: acf as Book[],
+    nvi: nvi as Book[],
+  };
 
-  // change version while trying to preserve selection
   const changeVersion = (newVersion: "aa" | "acf" | "nvi") => {
     const newBooks = versionData[newVersion];
     setVersion(newVersion);
@@ -57,56 +54,48 @@ export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       return;
     }
 
-    // find same book in new version
     const bookInNewVersion = newBooks.find((b) => b.name === selectedBook.name);
 
     if (bookInNewVersion) {
       setSelectedBook(bookInNewVersion);
 
-      // adjust chapter if new book has fewer chapters
       const chapter =
         selectedChapter <= bookInNewVersion.chapters.length
           ? selectedChapter
           : 1;
       setSelectedChapter(chapter);
 
-      // adjust verse if new chapter has fewer verses
       const verse =
         selectedVerse <= bookInNewVersion.chapters[chapter - 1].length
           ? selectedVerse
           : 1;
       setSelectedVerse(verse);
     } else {
-      // if book doesn't exist in new version, reset
       setSelectedBook(null);
       setSelectedChapter(1);
       setSelectedVerse(1);
     }
   };
 
-  // helpers to find index
   const findBookIndex = (book: Book | null) => {
     if (!book) return -1;
     return books.findIndex((b) => b.name === book.name);
   };
 
-  // select a book (resets chapter & verse)
   function selectBook(book: Book) {
     setSelectedBook(book);
     setSelectedChapter(1);
     setSelectedVerse(1);
   }
 
-  // select a chapter in a given book
+  // CORRIGIDO → não resetamos selectedVerse
   function selectChapter(book: Book, chapterNumber: number) {
     const maxCh = Math.max(1, book.chapters.length);
     const cap = Math.min(Math.max(1, chapterNumber), maxCh);
     setSelectedBook(book);
     setSelectedChapter(cap);
-    setSelectedVerse(1);
   }
 
-  // goto next verse with wrap to next chapter/book
   function gotoNextVerse() {
     if (!selectedBook) return;
 
@@ -140,7 +129,6 @@ export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }
 
-  // goto previous verse with wrap to prev chapter/book
   function gotoPrevVerse() {
     if (!selectedBook) return;
 
@@ -181,7 +169,7 @@ export const BibleProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const value: BibleContextValue = {
     version,
-    setVersion: changeVersion, // aqui usamos a função que preserva a posição
+    setVersion: changeVersion,
     books,
     selectedBook,
     selectedChapter,

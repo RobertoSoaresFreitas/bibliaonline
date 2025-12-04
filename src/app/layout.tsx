@@ -6,6 +6,8 @@ import "@/styles/globals.css";
 import { BibleProvider } from "@/context/BibleContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Sidebar from "@/components/Sidebar";
+import Search from "@/components/Search";
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -76,7 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </>
               )}
 
-              <main className="flex-1 px-4 py-6 max-w-5xl mx-auto">
+              <main className="flex-1 px-4 py-6 max-w-5xl mx-auto ">
+                <Search />
                 {children}
               </main>
             </div>
