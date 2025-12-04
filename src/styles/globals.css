@@ -1,0 +1,171 @@
+/* =========================================================
+   IMPORTAÇÕES DO TAILWIND
+   - tailwindcss inclui base, components e utilities
+   - @tailwind utilities adiciona classes extras
+========================================================= */
+
+@import "tailwindcss";
+@tailwind utilities;
+
+/* =========================================================
+   VARIÁVEIS DE TEMA (DEFAULTA)
+   Estas variáveis definem o comportamento padrão do site.
+   Todos os temas substituem SOMENTE estes valores.
+========================================================= */
+
+:root {
+  --surface: #ffffff;                 /* fundo principal */
+  --surface-highlight: #f0f0f0;       /* caixas, destaques */
+  --primary: #a1a1aa;                 /* texto zinc-400 */
+  --border: #a1a1aa;                  /* bordas zinc-400 */
+}
+
+/* =========================================================
+   TEMA CLARO EXPLÍCITO
+   Aplicamos as variáveis quando <html class="theme-claro">
+   (evita dependência de :root sem classe)
+========================================================= */
+html.theme-claro {
+  --surface: #e8e8e8;               /* fundo principal solicitado */
+  --surface-highlight: #f0f0f0;     /* caixas / elevações */
+  --primary: #111111;               /* texto / Preto */
+  --border: #a1a1aa;                /* bordas / zinc-400 */
+}
+
+
+/* =========================================================
+   TEMA ESCURO
+   Ativado por: <html class="dark">
+========================================================= */
+
+html.dark {
+  --surface: #1a1a1a;                 /* fundo principal */
+  --surface-highlight: #292929;    /* caixas / elevações */
+  --primary: #f5f5f5;            /* texto / quase branco */
+  --border: #555555;             /* bordas / cinza médio */
+}
+
+/* =========================================================
+   TEMA HOMEM — Azul translúcido futurista
+   Ativado por: <html class="theme-homem">
+========================================================= */
+
+html.theme-homem {
+  --surface: rgba(20, 60, 120, 0.45);               /* fundo principal */
+  --surface-highlight: rgba(20, 60, 120, 0.35);  /* caixas / elevações */
+   --primary: #111111;                                /* texto / Preto */
+  --border: #a1a1aa;                              /* bordas / zinc-400 */
+}
+
+/* =========================================================
+   TEMA MULHER — Rosa translúcido futurista
+   Ativado por: <html class="theme-mulher">
+========================================================= */
+
+html.theme-mulher {
+  --surface: rgba(60, 60, 120, 0.45);               /* fundo principal */
+  --surface-highlight: rgba(0, 0, 255, 0.15);     /* caixas / elevações */
+  --primary: #921DA2;           /* texto / rosa claro */
+  --border: rgba(255, 255, 255, 0.25);  /* bordas / branco translúcido */
+}
+
+/* =========================================================
+   UTILITÁRIOS QUE USAM AS VARIÁVEIS
+   Eles permitem usar as cores do tema como classes Tailwind.
+========================================================= */
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-surface-highlight {
+  background-color: var(--surface-highlight);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.border-border {
+  border-color: var(--border);
+}
+
+/* =========================================================
+   ESTILOS GERAIS DE DOCUMENTO
+========================================================= */
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+/* =========================================================
+   TAILWIND: Variáveis adicionais opcionais
+   (mantidas para compatibilidade com seu projeto)
+========================================================= */
+
+@theme inline {
+  --color-background: var(--surface);
+  --color-foreground: var(--primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* =========================================================
+   AJUSTE DE TEMA AUTOMÁTICO BASEADO NO DISPOSITIVO
+   Mantive isso, mas agora ele NÃO sobrescreve o tema manual.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* usado apenas quando NÃO houver classe de tema ativa */
+    --surface: #0f0f0f;
+    --surface-highlight: #1f1f1f;
+    --primary: #eaeaea;
+    --border: #444;
+  }
+}
+
+/* =========================================================
+   BODY
+   MUITO IMPORTANTE:
+   Agora ele usa suas variáveis de tema.
+   Antes estava travado em #111 (isso quebrava o tema).
+========================================================= */
+
+body {
+  background-color: var(--surface);
+  color: var(--primary);
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   AJUSTES PARA O TEMA ESCURO ESPECÍFICOS
+   Agora não há mais sobreposição que quebre o tema.
+========================================================= */
+
+html.dark body {
+  background-color: var(--surface); /* mantém consistência */
+  color: var(--primary);
+}
+
+/* =========================================================
+   COMPONENTES COM "bg-white" NO CÓDIGO ORIGINAL
+   Aqui ajustamos para seguirem o tema escuro sem quebrar
+   outros temas (homem/mulher).
+========================================================= */
+
+html.dark .bg-white {
+  background-color: var(--surface-highlight) !important;
+}
+
+html.dark .border {
+  border-color: var(--border) !important;
+}
+
+html.dark .hover\:bg-gray-100:hover {
+  background-color: var(--surface-highlight) !important;
+}
