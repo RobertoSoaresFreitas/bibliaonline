@@ -6,6 +6,8 @@ import "@/styles/globals.css";
 import { BibleProvider } from "@/context/BibleContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Sidebar from "@/components/Sidebar";
+import VersionSelector from "@/components/VersionSelector";
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -23,15 +25,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-br">
       <body className="min-h-screen bg-surface text-primary">
         <ThemeProvider>
+
           <BibleProvider>
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 z-[999] border-b border-border bg-surface/90 backdrop-blur">
               <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-                <strong className="text-lg text-primary">Bíblia Sagrada</strong>
-
+                <strong className="text-lg text-primary">Bíblia Sagrada
+                
+                </strong>
+               
                 {/* hamburger */}
                 <button
-                  className="md:hidden px-3 py-1 border border-border rounded z-[1000] bg-surface"
+                  className="md:hidden px-3 py-1 border border-border rounded z-[1000] bg-surface ml-4"
                   onClick={() => setOpen(true)}
                 >
                   ☰
@@ -43,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* SIDEBAR DESKTOP */}
               <div className="hidden md:block w-72">
-                <Sidebar open={true} setOpen={() => {}} />
+                <Sidebar open={true} setOpen={() => { }} />
               </div>
 
               {/* SIDEBAR MOBILE */}

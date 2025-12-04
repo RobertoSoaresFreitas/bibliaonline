@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useBible } from "@/context/BibleContext";
 
 export default function HomePage() {
@@ -13,12 +13,27 @@ export default function HomePage() {
     gotoPrevVerse,
   } = useBible();
 
+  const [showTopButton, setShowTopButton] = useState(false);
+
   useEffect(() => {
     if (!selectedBook) return;
     const id = `verse-${selectedChapter}-${selectedVerse}`;
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [selectedBook, selectedChapter, selectedVerse]);
+
+  // mostrar botão ↑ topo quando rolar a página
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowTopButton(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (!selectedBook) {
     return (
@@ -85,11 +100,10 @@ export default function HomePage() {
                 id={`verse-${selectedChapter}-${verseNum}`}
                 key={idx}
                 onClick={() => setSelectedVerse(verseNum)}
-                className={`cursor-pointer leading-relaxed p-2 rounded border-border ${
-                  isActive
+                className={`cursor-pointer leading-relaxed p-2 rounded border-border ${isActive
                     ? "text-2xl bg-surface-highlight border-l-4 border-orange-500"
                     : ""
-                }`}
+                  }`}
               >
                 <span className="font-semibold mr-2">{verseNum}.</span>
                 {text}
@@ -98,6 +112,32 @@ export default function HomePage() {
           })}
         </div>
       </div>
+
+      {/* Botão ↑ Topo */}
+      {showTopButton && (
+        <button
+  onClick={scrollToTop}
+  className="
+    fixed bottom-6 right-6 p-3 rounded-full 
+    bg-surface/70 text-foreground backdrop-blur-md
+    border border-border
+    shadow-md hover:bg-surface/90 transition
+    flex items-center justify-center
+  "
+>
+  {/* Seta para cima estilizada */}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-4 w-4"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+  </svg>
+</button>
+      )}
     </main>
   );
 }
