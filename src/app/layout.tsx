@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                   {/* Botão para celulares / telas pequenas */}
                   <button
-                    className="block md:hidden cursor-pointer bg-surface ml-4 hover:text-zinc-600 transition"
+                    className="block md:hidden cursor-pointer  ml-4 hover:text-zinc-600 transition"
                     onClick={() => setOpen(true)}
                   >
                     Bíblia Sagrada
@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                   {/* Botão para telas médias e maiores */}
                   <button
-                    className="hidden md:block cursor-pointer bg-surface ml-4 hover:text-zinc-600 transition"
+                    className="hidden md:block cursor-pointer  ml-4 hover:text-zinc-600 transition"
                   >
                     Bíblia Sagrada
                   </button>

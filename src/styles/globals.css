@@ -7,12 +7,11 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-/* =========================================================
+/* =========================================================================
    VARIÁVEIS DE TEMA (DEFAULTA)
    Estas variáveis definem o comportamento padrão do site.
    Todos os temas substituem SOMENTE estes valores.
-========================================================= */
-
+========================================================================== */
 :root {
   --surface: #ffffff;                 /* fundo principal */
   --surface-highlight: #f0f0f0;       /* caixas, destaques */
@@ -20,59 +19,55 @@
   --border: #a1a1aa;                  /* bordas zinc-400 */
 }
 
-/* =========================================================
+/* =========================================================================
    TEMA CLARO EXPLÍCITO
    Aplicamos as variáveis quando <html class="theme-claro">
    (evita dependência de :root sem classe)
-========================================================= */
+============================================================================ */
 html.theme-claro {
-  --surface: #e8e8e8;               /* fundo principal solicitado */
-  --surface-highlight: #f0f0f0;     /* caixas / elevações */
-  --primary: #111111;               /* texto / Preto */
-  --border: #a1a1aa;                /* bordas / zinc-400 */
+  --surface: #e8e8e8;                       /* fundo principal / branco gelo */
+  --surface-highlight:rgba(250, 250, 254, 0.70);/* caixas / elevações / cinza*/
+  --primary: #000000;                                       /* texto / Preto */
+  --border: #a1a1a1;                                       /* bordas / cinza */
 }
 
-
-/* =========================================================
+/* ============================================================================
    TEMA ESCURO
    Ativado por: <html class="dark">
-========================================================= */
-
+============================================================================== */
 html.dark {
-  --surface: #1a1a1a;                 /* fundo principal */
-  --surface-highlight: #292929;    /* caixas / elevações */
-  --primary: #f5f5f5;            /* texto / quase branco */
-  --border: #555555;             /* bordas / cinza médio */
+  --surface: #000000;                               /* fundo principal / preto */
+  --surface-highlight:rgba(250, 250, 250,0.25);/* caixas / elevações / branco translucido */
+  --primary: #f5f5f5;                                 /* texto / quase branco */
+  --border: rgba(85, 85,);                            /* bordas / cinza médio */
 }
 
-/* =========================================================
+/* =============================================================================
    TEMA HOMEM — Azul translúcido futurista
    Ativado por: <html class="theme-homem">
-========================================================= */
-
+============================================================================= */
 html.theme-homem {
-  --surface: rgba(20, 60, 120, 0.45);               /* fundo principal */
-  --surface-highlight: rgba(20, 60, 120, 0.35);  /* caixas / elevações */
-   --primary: #111111;                                /* texto / Preto */
-  --border: #a1a1aa;                              /* bordas / zinc-400 */
+  --surface: rgba(20, 60, 120, 0.25);               /* fundo principal / Azul */
+  --surface-highlight: rgba(20, 60, 120, 0.45);   /* caixas / elevações / Azul*/
+  --primary: #000000;                                        /* texto / Preto */
+  --border: rgba(118, 120, 123, 0.99);                      /* bordas / Cinza */
 }
 
-/* =========================================================
+/* ==============================================================================
    TEMA MULHER — Rosa translúcido futurista
    Ativado por: <html class="theme-mulher">
-========================================================= */
-
+============================================================================== */
 html.theme-mulher {
-  --surface: rgba(60, 60, 120, 0.45);               /* fundo principal */
-  --surface-highlight: rgba(0, 0, 255, 0.15);     /* caixas / elevações */
-  --primary: #921DA2;           /* texto / rosa claro */
-  --border: rgba(255, 255, 255, 0.25);  /* bordas / branco translúcido */
+  --surface: rgba(60, 60, 120, 0.45);                /* fundo principal / lisás */
+  --surface-highlight: rgba(150, 50, 150, 0.35);  /* caixas / elevações / rosa transulido */
+  --primary: rgba(220, 207, 230);                               /* texto / rosa */
+  --border: rgba(230, 190, 240, 0.9);              /* bordas / rosa translúcido */
 }
 
-/* =========================================================
+/* ==============================================================================
    UTILITÁRIOS QUE USAM AS VARIÁVEIS
    Eles permitem usar as cores do tema como classes Tailwind.
-========================================================= */
+=============================================================================== */
 
 .bg-surface {
   background-color: var(--surface);
