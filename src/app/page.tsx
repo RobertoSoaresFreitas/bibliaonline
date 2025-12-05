@@ -339,14 +339,14 @@ export default function HomePage() {
       {/* Header */}
       <div className="sticky top-16 z-40 pb-4 mb-4 border-b border-border  backdrop-blur">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-2">
-          <div className="text-lg font-semibold text-yellow-500 hover:text-yellow-400">
+          <div className="text-lg font-semibold text-orange-500 hover:text-orange-400">
             {selectedBook.name} {selectedChapter}:{selectedVerse}
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={gotoPrevVerse}
-              className="px-3 py-1 border border-border rounded text-yellow-500 hover:text-yellow-400"
+              className="px-3 py-1 border border-border rounded text-orange-500 hover:text-orange-400"
             >
               ←Anterior
             </button>
@@ -365,7 +365,7 @@ export default function HomePage() {
 
             <button
               onClick={gotoNextVerse}
-              className="px-3 py-1 border border-border rounded text-yellow-500 hover:text-yellow-400"
+              className="px-3 py-1 border border-border rounded text-orange-500 hover:text-orange-400"
             >
               Próximo→
             </button>
@@ -431,7 +431,7 @@ export default function HomePage() {
       {/* Bottom sheet modal for sharing */}
       {showSheet && (
         <div className="fixed inset-x-0 bottom-0 z-50">
-          <div className="bg-surface text-yellow-500 border-t border-border px-4 py-3 shadow-xl flex items-center justify-between gap-3">
+          <div className="bg-surface text-orange-500 border-t border-border px-4 py-3 shadow-xl flex items-center justify-between gap-3">
             <div className="flex gap-3 items-center">
               {/* <button
                 onClick={shareViaWhatsApp}

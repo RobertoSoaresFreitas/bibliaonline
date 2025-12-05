@@ -72,7 +72,7 @@ export default function Sidebar({ open, setOpen }: Props) {
                     onClick={() => toggleBook(b.name)}
                     className={`
                       w-full text-left px-2 py-2 border border-border rounded
-                      ${isSelectedBook ? "bg-yellow-500 text-black" : "hover:bg-surface-highlight bg-surface text-foreground"}
+                      ${isSelectedBook ? "bg-orange-500 text-black" : "hover:bg-surface-highlight bg-surface text-foreground"}
                     `}
                   >
                     {b.name}
@@ -99,7 +99,7 @@ export default function Sidebar({ open, setOpen }: Props) {
                             className={`
                               px-2 py-1 border rounded text-sm
                               ${isActiveChapter
-                                ? "bg-yellow-500 text-black border-border"
+                                ? "bg-orange-500 text-black border-border"
                                 : "bg-surface text-foreground border-border hover:bg-surface-highlight"}
                             `}
                           >

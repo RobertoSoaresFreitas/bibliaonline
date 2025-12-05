@@ -11,13 +11,21 @@ function normalize(str: string) {
 }
 
 export default function Search() {
-  const { books, selectedBook, selectedChapter, setSelectedVerse, selectChapter } =
-    useBible();
+  const {
+    books,
+    selectedBook,
+    selectedChapter,
+    setSelectedVerse,
+    selectChapter,
+  } = useBible();
 
   const [query, setQuery] = useState("");
   const [scope, setScope] =
     useState<"chapter" | "book" | "bible">("chapter");
   const [results, setResults] = useState<any[]>([]);
+
+  // <<< NOVO estado para controlar se a busca já foi executada
+  const [hasSearched, setHasSearched] = useState(false);
 
   function handleSearch() {
     if (!query.trim()) return;
@@ -63,42 +71,35 @@ export default function Search() {
     });
 
     setResults(found);
+    setHasSearched(true); // <<< NOVO
   }
 
   function clearSearch() {
     setQuery("");
     setResults([]);
+    setHasSearched(false); // <<< NOVO
   }
 
   function handleGoTo(r: any) {
     const bookObj = books.find((b) => b.name === r.book);
     if (!bookObj) return;
 
-    // 1) Seleciona o versículo primeiro
-    setSelectedVerse(r.verse);
-
-    // 2) Seleciona o capítulo correto
     selectChapter(bookObj, r.chapter);
 
-    // 3) Após re-render, scroll para o versículo
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        const verseElement = document.getElementById(
-          `verse-${r.chapter}-${r.verse}`
-        );
+      setSelectedVerse(r.verse);
 
-        if (verseElement) {
-          verseElement.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
+      setTimeout(() => {
+        const el = document.getElementById(`verse-${r.chapter}-${r.verse}`);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       }, 120);
     });
   }
 
   return (
-    <div className="my-4 p-3 border border-border rounded bg-surface/50">
+    <div className="my-2 p-2 border border-border rounded bg-surface/50">
       <input
         type="text"
         placeholder="Buscar palavra..."
@@ -115,7 +116,8 @@ export default function Search() {
             value="chapter"
             checked={scope === "chapter"}
             onChange={() => setScope("chapter")}
-          /> Capítulo
+          />{" "}
+          Capítulo
         </label>
 
         <label>
@@ -125,7 +127,8 @@ export default function Search() {
             value="book"
             checked={scope === "book"}
             onChange={() => setScope("book")}
-          /> Livro
+          />{" "}
+          Livro
         </label>
 
         <label>
@@ -135,7 +138,8 @@ export default function Search() {
             value="bible"
             checked={scope === "bible"}
             onChange={() => setScope("bible")}
-          /> Bíblia
+          />{" "}
+          Bíblia
         </label>
       </div>
 
@@ -154,9 +158,17 @@ export default function Search() {
           Limpar
         </button>
 
-        {results.length > 0 && (
+        {/* Só mostra quando já buscou e encontrou resultados */}
+        {hasSearched && results.length > 0 && (
           <span className="text-sm opacity-70">
-            {results.length} resultados
+            {results.length} resultado{results.length > 1 ? "s" : ""}
+          </span>
+        )}
+
+        {/* Só mostra quando já buscou e NÃO encontrou nada */}
+        {hasSearched && results.length === 0 && (
+          <span className="text-sm opacity-70 text-red-500">
+            0 resultado, tente outra palavra
           </span>
         )}
       </div>
@@ -176,7 +188,6 @@ export default function Search() {
               parts.push(
                 `<strong class='text-orange-500'>${match}</strong>`
               );
-
               lastIndex = pos + q.length;
               pos = r.normalizedVerse.indexOf(q, lastIndex);
             }
